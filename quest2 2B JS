@@ -1,0 +1,5 @@
+const QUERY = `SELECT Id, Name, Amount, CloseDate, StageName, CreatedDate
+               FROM Opportunity
+               WHERE StageName = 'Negotiation/Review'
+               ORDER BY CreatedDate DESC
+               LIMIT 5`;
