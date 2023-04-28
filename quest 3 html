@@ -1,0 +1,26 @@
+<template>
+    <form>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <label for="description">Descrição:</label>
+        <textarea id="description" name="description" required></textarea>
+        <br><br>
+        <label for="value">Valor Estimado:</label>
+        <input type="number" id="value" name="value" required>
+        <br><br>
+        <label for="stage">Estágio de Vendas:</label>
+        <select id="stage" name="stage" required>
+            <option value="">--Selecione--</option>
+            <option value="Prospecting">Prospecting</option>
+            <option value="Qualification">Qualification</option>
+            <option value="Proposal">Proposal</option>
+            <option value="Negotiation">Negotiation</option>
+            <option value="Closed Won">Closed Won</option>
+            <option value="Closed Lost">Closed Lost</option>
+        </select>
+        <br><br>
+        <button onclick={salvarOportunidade}>Salvar</button>
+        <button onclick={cancelarInsercao}>Cancelar</button>
+    </form>
+</template>
