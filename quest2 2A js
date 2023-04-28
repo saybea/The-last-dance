@@ -1,0 +1,36 @@
+import { LightningElement, wire, api } from 'lwc';
+import { getListUi } from 'lightning/uiListApi';
+import OPORTUNIDADE_OBJECT from '@salesforce/schema/Opportunity';
+
+const COLUMNS = [
+    { fieldName: 'Id' },
+    { fieldName: 'Name' },
+    { fieldName: 'Amount' }
+];
+
+export default class OportunidadesLimitadas extends LightningElement {
+    @api recordId;
+    oportunidades = [];
+
+    @wire(getListUi, {
+        objectApiName: OPORTUNIDADE_OBJECT,
+        listViewApiName: 'All',
+        pageSize: 5,
+        filters: [
+            { fieldApiName: 'StageName', value: 'Negotiation/Review' }
+        ]
+    })
+    wiredOportunidades({ error, data }) {
+        if (data) {
+            this.oportunidades = data.records.records.map(record => {
+                let oportunidade = {};
+                COLUMNS.forEach(column => {
+                    oportunidade[column.fieldName] = record.fields[column.fieldName].value;
+                });
+                return oportunidade;
+            });
+        } else if (error) {
+            console.log(error);
+        }
+    }
+}
