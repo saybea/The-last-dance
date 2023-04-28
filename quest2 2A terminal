@@ -1,0 +1,1 @@
+sfdx force:lightning:component:create --type lwc -n oportunidadesLimitadas -d force-app/main/default/lwc
