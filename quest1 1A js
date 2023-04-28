@@ -1,0 +1,61 @@
+import { LightningElement, track } from 'lwc';
+
+export default class NomeDoComponente extends LightningElement {
+    @track number1;
+    @track number2;
+    @track operation;
+    @track result;
+    @track showResult = false;
+
+    handleNumber1Change(event) {
+        this.number1 = event.target.value;
+    }
+
+    handleNumber2Change(event) {
+        this.number2 = event.target.value;
+    }
+
+    handleAddition() {
+        this.operation = '+';
+    }
+
+    handleSubtraction() {
+        this.operation = '-';
+    }
+
+    handleMultiplication() {
+        this.operation = '*';
+    }
+
+    handleDivision() {
+        this.operation = '/';
+    }
+
+    handleClear() {
+        this.number1 = null;
+        this.number2 = null;
+        this.operation = null;
+        this.result = null;
+        this.showResult = false;
+    }
+
+    handleCalculate() {
+        if (this.number1 && this.number2 && this.operation) {
+            switch (this.operation) {
+                case '+':
+                    this.result = parseFloat(this.number1) + parseFloat(this.number2);
+                    break;
+                case '-':
+                    this.result = parseFloat(this.number1) - parseFloat(this.number2);
+                    break;
+                case '*':
+                    this.result = parseFloat(this.number1) * parseFloat(this.number2);
+                    break;
+                case '/':
+                    this.result = parseFloat(this.number1) / parseFloat(this.number2);
+                    break;
+            }
+            this.showResult = true;
+        }
+    }
+}
