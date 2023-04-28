@@ -1,0 +1,29 @@
+import { LightningElement } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
+export default class CreateLeadForm extends LightningElement {
+  handleSubmit(event) {
+    event.preventDefault();
+    const fields = event.detail.fields;
+    this.template.querySelector('lightning-record-edit-form').submit(fields);
+  }
+
+  handleSuccess(event) {
+    const recordId = event.detail.id;
+    const toastEvent = new ShowToastEvent({
+      title: 'Lead criado',
+      message: 'O lead foi criado com sucesso!',
+      variant: 'success',
+    });
+    this.dispatchEvent(toastEvent);
+
+    this[NavigationMixin.Navigate]({
+      type: 'standard__recordPage',
+      attributes: {
+        recordId: recordId,
+        objectApiName: 'Lead',
+        actionName: 'view'
+      },
+    });
+  }
+}
