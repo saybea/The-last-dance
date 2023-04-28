@@ -1,0 +1,45 @@
+import { LightningElement, track } from 'lwc';
+
+export default class NomeDoComponente extends LightningElement {
+    @track number1;
+    @track number2;
+    @track result;
+
+    handleNumber1Change(event) {
+        this.number1 = event.target.value;
+    }
+
+    handleNumber2Change(event) {
+        this.number2 = event.target.value;
+    }
+
+    handleSum() {
+        this.result = parseInt(this.number1) + parseInt(this.number2);
+    }
+
+    handleSubtract() {
+        this.result = parseInt(this.number1) - parseInt(this.number2);
+    }
+
+    handleMultiply() {
+        this.result = parseInt(this.number1) * parseInt(this.number2);
+    }
+
+    handleDivide() {
+        if (this.number2 == 0) {
+            this.result = "Não é possível dividir por zero";
+        } else {
+            this.result = parseInt(this.number1) / parseInt(this.number2);
+        }
+    }
+
+    handleClear() {
+        this.number1 = "";
+        this.number2 = "";
+        this.result = "";
+    }
+
+    handleEqual() {
+        // Faz nada, resultado já está definido pela última operação
+    }
+}
