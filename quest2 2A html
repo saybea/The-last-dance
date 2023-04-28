@@ -1,0 +1,32 @@
+<template>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="ID">ID</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Nome">Nome</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Amount">Amount</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={oportunidades} for:item="oportunidade">
+                <tr key={oportunidade.Id}>
+                    <td data-label="ID">
+                        <div class="slds-truncate">{oportunidade.Id}</div>
+                    </td>
+                    <td data-label="Nome">
+                        <div class="slds-truncate">{oportunidade.Name}</div>
+                    </td>
+                    <td data-label="Amount">
+                        <div class="slds-truncate">{oportunidade.Amount}</div>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>
