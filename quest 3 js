@@ -1,0 +1,48 @@
+import { LightningElement } from 'lwc';
+import { createRecord } from 'lightning/uiRecordApi';
+import OPPORTUNITY_OBJECT from '@salesforce/schema/Opportunity';
+import NAME_FIELD from '@salesforce/schema/Opportunity.Name';
+import DESCRIPTION_FIELD from '@salesforce/schema/Opportunity.Description';
+import VALUE_FIELD from '@salesforce/schema/Opportunity.Amount';
+import STAGE_FIELD from '@salesforce/schema/Opportunity.StageName';
+
+export default class InserirOportunidade extends LightningElement {
+    salvarOportunidade() {
+        // Obter os valores dos campos obrigatórios
+        let nome = this.template.querySelector('input[name="name"]').value;
+        let descricao = this.template.querySelector('textarea[name="description"]').value;
+        let valor = this.template.querySelector('input[name="value"]').value;
+        let estagio = this.template.querySelector('select[name="stage"]').value;
+
+        // Validar campos obrigatórios
+        if (!nome || !descricao || !valor || !estagio) {
+            alert('Todos os campos são obrigatórios.');
+            return;
+        }
+
+        // Criar objeto de oportunidade para inserção
+        const fields = {};
+        fields[NAME_FIELD.fieldApiName] = nome;
+        fields[DESCRIPTION_FIELD.fieldApiName] = descricao;
+        fields[VALUE_FIELD.fieldApiName] = valor;
+        fields[STAGE_FIELD.fieldApiName] = estagio;
+
+        const recordInput = { apiName: OPPORTUNITY_OBJECT.objectApiName, fields };
+        
+        // Inserir oportunidade no SalesForce
+        createRecord(recordInput)
+            .then(() => {
+                // Sucesso ao inserir oportunidade
+                alert('Oportunidade inserida com sucesso!');
+            })
+            .catch((error) => {
+                // Erro ao inserir oportunidade
+                alert('Ocorreu um erro ao inserir a oportunidade: ' + JSON.stringify(error));
+            });
+    }
+
+    cancelarInsercao() {
+        // Redirecionar para a página de oportunidades
+        window.location.href = '/lightning :record/Opportunity/home';
+}
+}
