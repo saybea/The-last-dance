@@ -1,0 +1,23 @@
+<template>
+    <div class="container">
+        <div class="input-row">
+            <lightning-input type="number" label="Número 1" onchange={handleNumber1Change}></lightning-input>
+            <lightning-button label="+" onclick={handleAddition}></lightning-button>
+            <lightning-button label="-" onclick={handleSubtraction}></lightning-button>
+        </div>
+        <div class="input-row">
+            <lightning-input type="number" label="Número 2" onchange={handleNumber2Change}></lightning-input>
+            <lightning-button label="*" onclick={handleMultiplication}></lightning-button>
+            <lightning-button label="/" onclick={handleDivision}></lightning-button>
+        </div>
+        <div class="input-row">
+            <lightning-button label="Clear" onclick={handleClear}></lightning-button>
+            <lightning-button label="=" onclick={handleCalculate}></lightning-button>
+        </div>
+        <div class="result-row">
+            <lightning-card title="Resultado" if:true={showResult}>
+                <div class="slds-p-horizontal_small slds-p-vertical_xx-small">{result}</div>
+            </lightning-card>
+        </div>
+    </div>
+</template>
