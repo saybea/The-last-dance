@@ -1,0 +1,44 @@
+<template>
+  <div class="c-custom-background c-custom-border c-custom-padding">
+    <table class="slds-table slds-table_bordered">
+      <thead>
+        <tr class="slds-line-height_reset">
+          <th class="slds-p-horizontal_small" scope="col">
+            <span class="slds-truncate">ID</span>
+          </th>
+          <th class="slds-p-horizontal_small" scope="col">
+            <span class="slds-truncate">Name</span>
+          </th>
+          <th class="slds-p-horizontal_small" scope="col">
+            <span class="slds-truncate">Amount</span>
+          </th>
+          <th class="slds-p-horizontal_small" scope="col">
+            <span class="slds-truncate">Close Date</span>
+          </th>
+          <th class="slds-p-horizontal_small" scope="col">
+            <span class="slds-truncate">Stage</span>
+          </th>
+          <th class="slds-p-horizontal_small" scope="col">
+            <span class="slds-truncate">Created Date</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <template for:each={oportunidades} for:item="oportunidade">
+          <tr key={oportunidade.Id}>
+            <td class="slds-table_cell-buffer">{oportunidade.Id}</td>
+            <td class="slds-table_cell-buffer">
+              <div class="slds-truncate" title={oportunidade.Name}>{oportunidade.Name}</div>
+            </td>
+            <td class="slds-table_cell-buffer">{oportunidade.Amount}</td>
+            <td class="slds-table_cell-buffer">{oportunidade.CloseDate}</td>
+            <td class="slds-table_cell-buffer">
+              <div class="slds-truncate" title={oportunidade.StageName}>{oportunidade.StageName}</div>
+            </td>
+            <td class="slds-table_cell-buffer">{oportunidade.CreatedDate}</td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </div>
+</template>
